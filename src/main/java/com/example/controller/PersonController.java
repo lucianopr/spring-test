@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author luciano
  */
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/person")
 public class PersonController {
     
     private final PersonRepository personRepository;
@@ -35,15 +35,12 @@ public class PersonController {
     
     @GetMapping("/insert")
     public String insert(){
-        for(int i=0; i<10; i++){
-            personRepository.save(new Person("fname_"+i, "lname_"+i));
+        Boolean perm = true;
+        for(int i=0; i<3; i++){
+            personRepository.save(new Person("name_"+i, perm, "email_"+i+"@mail.com"));
+            perm = false;
         }
-        return "saved";
-    }
-    
-    @GetMapping("/error")
-    public String notFound(){
-        return "oops! an error has ocurred";
+        return "person saved";
     }
     
 }

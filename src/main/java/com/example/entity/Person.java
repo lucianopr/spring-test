@@ -26,17 +26,20 @@ public class Person implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-    @Column(name = "fname")
-    private String fname;
-    @Column(name = "lname")
-    private String lname;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "is_admin")
+    private Boolean is_admin;
+    @Column(name = "email")
+    private String email;
 
     public Person() {
     }
 
-    public Person(String fname, String lname) {
-        this.fname = fname;
-        this.lname = lname;
+    public Person(String name, Boolean is_admin, String email) {
+        this.name = name;
+        this.is_admin = is_admin;
+        this.email = email;
     }
     
     
@@ -55,31 +58,45 @@ public class Person implements Serializable {
     }
 
     /**
-     * @return the fname
+     * @return the name
      */
-    public String getFname() {
-        return fname;
+    public String getName() {
+        return name;
     }
 
     /**
-     * @param fname the fname to set
+     * @param name the name to set
      */
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    /**
+     * @return the is_admin
+     */
+    public Boolean getIs_admin() {
+        return is_admin;
     }
 
     /**
-     * @return the lname
+     * @param is_admin the is_admin to set
      */
-    public String getLname() {
-        return lname;
+    public void setIs_admin(Boolean is_admin) {
+        this.is_admin = is_admin;
     }
 
     /**
-     * @param lname the lname to set
+     * @return the email
      */
-    public void setLname(String lname) {
-        this.lname = lname;
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     
