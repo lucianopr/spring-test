@@ -8,8 +8,8 @@ package com.example.controller;
 import com.example.entity.Pet;
 import com.example.repository.PetRepository;
 import java.util.List;
-import java.util.stream;
-import java.util.stream.Collectors;
+import java.util.stream.*;
+//import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,17 +48,15 @@ public class PetController {
         return "pet saved";
     }
     
-    @GetMapping("/filter/{species}/{zone}/{race}/{text}")
-    public List<Pet> listPetsWithFilter(@PathVariable String species, @PathVariable Long zone, @PathVariable String race, @PathVariable String text){
-        return petRepository.stream().filter(x -> x.getSpecies() == species && x.getZoneId() == zone && x.getRace() == race && x.getDistinctive().indexOf(text) != -1 )
-                .collect(Collectors.toList());
+    @RequestMapping("/filter/{race}")
+    public List<Pet> listPetsWithFilter(@PathVariable String race){
+        return petRepository.findByRace(race);
     }
     
     @RequestMapping(value = "/addPet", method = RequestMethod.POST)
-    @SuppressWarnings("unchecked")
     public List<Pet> addPet(@RequestBody Pet pet){
-        petRepository.add(pet);
-        return (List<Pet>) petRepository;
+        petRepository.save(pet);
+        return petRepository.findAll();
     }
     
     
