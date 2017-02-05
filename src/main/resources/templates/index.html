@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Missing Pet</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../static/bootstrap.css" th:href="@{/bootstrap.css}" />
+        <script type="text/javascript" src='/static/angular.min.js' th:src='@{/angular.min.js}'></script>
+        <script type="text/javascript" src='/static/app/app.module.js' th:src='@{/app/app.module.js}'></script>
+        <script type="text/javascript" src='/static/app/pet.controller.js' th:src='@{/app/pet.controller.js}'></script>
+    </head>
+    <body ng-app='app' ng-controller='PetController as vm'>
+        <header>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Missing Pet</a>
+                    </div>
+                    <p class="navbar-text navbar-right" th:text="'Signed in as ' + ${username}" style="margin-right: 10px;"> Sign In </p>
+                </div>
+            </nav>
+        </header>
+        
+        <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-8">
+                    <div class='btn-group' role='group'>
+                        <button type='buton' class='btn-default btn' ng-click="vm.getAll()">List All</button>
+                    </div>
+			<p class="text-primary lead">
+				Missing Pet List:
+			</p>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							Name
+						</th>
+						<th>
+							Birth
+						</th>
+						<th>
+							Species
+						</th>
+                                                <th>
+							Color
+						</th>
+						<th>
+							Distinctive
+						</th>
+						<th>
+							Zone
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+                                    <tr ng-repeat="pet in vm.pets">
+						<td>
+							{{pet.id}}
+						</td>
+						<td>
+							{{pet.name}}
+						</td>
+						<td>
+							{{pet.birth}}
+						</td>
+						<td>
+							{{pet.species}}
+						</td>
+                                                <td>
+							{{pet.race}}
+						</td>
+						<td>
+							{{pet.color}}
+						</td>
+						<td>
+							{{pet.distinctive}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-2">
+		</div>
+        </div>
+        </div>
+        
+        <footer class="footer" style="position:absolute; background-color: #e5e5e5; width:100%;">
+            <div class="container">
+                <p class="text-muted" th:text="'&COPY;' + ${year}">&copy;</p>
+            </div>
+        </footer>
+    </body>
+</html>
